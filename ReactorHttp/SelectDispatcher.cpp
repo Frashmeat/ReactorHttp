@@ -54,13 +54,14 @@ Dispatcher SelectDispatcher = {
 
 void* selectInit()
 {
-	SelectData* data = new SelectData;
+	//SelectData* data = new SelectData;
+	struct SelectData* data = (struct SelectData*)malloc(sizeof (struct SelectData));
 	FD_ZERO(&data->readSet);
 	FD_ZERO(&data->writeSet);
 	return data;
 }
 
-int selectAdd(Channel* channel, EventLoop* evLoop)
+int selectAdd(struct Channel* channel, struct EventLoop* evLoop)
 {
 	SelectData* data = (SelectData*)evLoop->dispatcherData;
 	if (channel->fd >= Max) {
@@ -71,7 +72,7 @@ int selectAdd(Channel* channel, EventLoop* evLoop)
 	return 0;
 }
 
-int selectRemove(Channel* channel, EventLoop* evLoop)
+int selectRemove(struct Channel* channel, struct EventLoop* evLoop)
 {
 	SelectData* data = (SelectData*)evLoop->dispatcherData;
 
@@ -80,7 +81,7 @@ int selectRemove(Channel* channel, EventLoop* evLoop)
 	return 0;
 }
 
-int selectModify(Channel* channel, EventLoop* evLoop)
+int selectModify(struct Channel* channel, struct EventLoop* evLoop)
 {
 	SelectData* data = (SelectData*)evLoop->dispatcherData;
 	fdClr(channel, data);
@@ -89,7 +90,7 @@ int selectModify(Channel* channel, EventLoop* evLoop)
 
 }
 
-int selectDispatch(EventLoop* evLoop, int timeout)
+int selectDispatch(struct EventLoop* evLoop, int timeout)
 {
 	SelectData* data = (SelectData*)evLoop->dispatcherData;
 	fd_set tempRead = data->readSet;

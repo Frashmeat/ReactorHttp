@@ -1,8 +1,8 @@
 #include "Channel.h"
 
-Channel* channelInit(int fd, int events, handleFunc readFunc, handleFunc writeFunc, void* arg)
+struct Channel* channelInit(int fd, int events, handleFunc readFunc, handleFunc writeFunc, void* arg)
 {
-	Channel* channel = new Channel;
+	Channel* channel = (Channel*)malloc(sizeof (struct Channel));
 	channel->fd = fd;
 	channel->events = events;
 	channel->readCallBack = readFunc;
@@ -11,7 +11,7 @@ Channel* channelInit(int fd, int events, handleFunc readFunc, handleFunc writeFu
 	return channel;
 }
 
-void writeEventEnable(Channel* channle, bool flag)
+void writeEventEnable(struct Channel* channle, bool flag)
 {
 	if (flag) {
 		channle->events |= WriteEvent;
@@ -21,7 +21,7 @@ void writeEventEnable(Channel* channle, bool flag)
 	}
 }
 
-bool isWriteEventEnable(Channel* channle)
+bool isWriteEventEnable(struct Channel* channle)
 {
 	return channle->events & WriteEvent;
 }

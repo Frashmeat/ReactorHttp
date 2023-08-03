@@ -2,11 +2,11 @@
 
 ThreadPool* threadPoolInit(struct EventLoop* evLoop, int threadNum)
 {
-    struct ThreadPool* threadPool = new struct ThreadPool;
+    struct ThreadPool* threadPool = (struct ThreadPool*)malloc(sizeof(struct ThreadPool));
     threadPool->index = 0;
     threadPool->isStart = false;
     threadPool->mainLoop = evLoop;
-    threadPool->workerThreads = new struct WorkerThread[threadNum];
+    threadPool->workerThreads = (struct WorkerThread*)malloc(sizeof(struct WorkerThread) * threadNum);
     threadPool->threadNum = threadNum;
     return threadPool;
 }

@@ -2,13 +2,14 @@
 
 ChannelMap* ChannelMapInit(int size)
 {
-    ChannelMap* map = new ChannelMap;
+    ChannelMap* map =(struct ChannelMap*)malloc(sizeof(struct ChannelMap));
     map->size = size;
-    map->list = new Channel * [size];
+    //map->list = new Channel * [size];
+    map->list = (struct Channel**)malloc(sizeof(struct Channel*)*size);
     return map;
 }
 
-void ChannelMapClear(ChannelMap* map)
+void ChannelMapClear(struct ChannelMap* map)
 {
     if (map != NULL) {
         for (int i = 0; i < map->size; i++)
@@ -23,14 +24,14 @@ void ChannelMapClear(ChannelMap* map)
     map->size = 0;
 }
 
-bool makeMapRoom(ChannelMap* map, int newSize, int unitSize)
+bool makeMapRoom(struct ChannelMap* map, int newSize, int unitSize)
 {
     if (map->size < newSize) {
         int curSize = map->size;
         while (curSize < newSize) {
             curSize *= 2;
         }
-        Channel** temp = (Channel**)realloc(map->list, curSize * unitSize);
+        struct Channel** temp = (Channel**)realloc(map->list, curSize * unitSize);
         if (temp == NULL) {
             return false;
         }
