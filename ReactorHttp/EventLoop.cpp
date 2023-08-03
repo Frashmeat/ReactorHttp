@@ -58,7 +58,7 @@ int eventLoopRun(EventLoop* evLoop) {
 	}
 	while (!evLoop->isQuit) {
 		//开始监听
-		dispatcher->dispatch(evLoop,2);
+		dispatcher->dispatch(evLoop, 2);
 		eventLoopProcessTask(evLoop);
 	}
 	return 0;
@@ -101,7 +101,7 @@ int eventLoopAddTask(struct EventLoop* evLoop, struct Channel* channel, int type
 		evLoop->head = evLoop->tail = newNode;
 	}
 	else {
-	//链表不为空时
+		//链表不为空时
 		evLoop->tail->next = newNode;
 		evLoop->tail = newNode;
 	}
@@ -116,7 +116,7 @@ int eventLoopAddTask(struct EventLoop* evLoop, struct Channel* channel, int type
 		//主线程
 		//需要用本地的socket通信 来激活子线程的 dispacher 跳出阻塞状态
 		taskWakeUp(evLoop);
-	
+
 	}
 	//如果为主线程在调用 唤醒子线程处理
 

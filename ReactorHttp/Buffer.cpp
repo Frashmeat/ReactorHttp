@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <sys/uio.h>
 Buffer* bufferInit(int size)
 {
     struct Buffer* buffer = new struct Buffer;
@@ -56,4 +57,53 @@ int bufferWriteableSize(Buffer* buffer)
 int bufferReadableSize(Buffer* buffer)
 {
     return buffer->writePos - buffer->readPos;
+}
+
+int bufferAppendData(struct Buffer* buffer, const char* data, int size)
+{
+    if (buffer == NULL || data == NULL || size <= 0) {
+        return -1;
+    }
+    //判断扩容 确保内存够用
+    bufferExtendRoom(buffer, size);
+    //拷贝data 到 buffer
+    memcpy(buffer + buffer->writePos,data,size);
+    buffer->writePos += size;
+    return 0;
+}
+
+int bufferAppendString(struct Buffer* buffer, const char* data)
+{
+    int len = strlen(data);
+    return bufferAppendData(buffer, data, len);
+}
+
+int bufferSocketRead(struct Buffer* buffer, int fd)
+{ 
+    struct iovec vec[2];
+    //初始化iovec 数组元素
+    int writeable = bufferWriteableSize(buffer);
+    vec[0].iov_base = buffer->data + buffer->writePos;
+    vec[0].iov_len = writeable;
+    char* tmpBuf = (char *)malloc(40960);
+    vec[1].iov_base = tmpBuf;
+    vec[1].iov_len = 40960;
+    //读取到buffer 内存vec[0] -> buffer.data
+    int ret = readv(fd, vec, 2);
+    if (ret == -1) {
+        //失败
+        return -1;
+    }
+    if (ret <= writeable) {
+        //buffer够用
+        buffer->writePos += ret;
+    }
+    else {
+        //buffer不够用
+        buffer->writePos = buffer->capacity;
+        bufferAppendData(buffer, tmpBuf, ret - writeable);
+    }
+    //释放 tmpBuf
+    free(tmpBuf);
+    return ret;
 }
