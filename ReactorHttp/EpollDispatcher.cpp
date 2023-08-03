@@ -53,13 +53,15 @@ int epollCtl(Channel* channel, EventLoop* evLoop, int _op)
 
 void* epollInit()
 {
-	EpollData* data = new EpollData;
+	//EpollData* data = new EpollData;
+	EpollData* data = (struct EpollData*)malloc(sizeof (struct EpollData));
 	data->epfd = epoll_create(10);
 	if (data->epfd == -1) {
 		perror("fail to init epoll");
 		exit(0);
 	}
-	data->events = new epoll_event[Max];
+	//data->events = new epoll_event[Max];
+	data->events = (struct epoll_event*)malloc(sizeof(struct epoll_event)*Max);
 	return data;
 }
 

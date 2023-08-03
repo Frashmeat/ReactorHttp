@@ -5,7 +5,8 @@
 #include <sys/uio.h>
 Buffer* bufferInit(int size)
 {
-    struct Buffer* buffer = new struct Buffer;
+    //struct Buffer* buffer = new struct Buffer;
+    struct Buffer* buffer = (struct Buffer*)malloc(sizeof(struct Buffer));
     buffer->data = new char[size];
     buffer->capacity = size;
     buffer->readPos = buffer->writePos = 0;

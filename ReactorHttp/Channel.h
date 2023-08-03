@@ -24,8 +24,8 @@ struct Channel
 };
 
 //初始化 channle 
-Channel* channelInit(int fd,int events,handleFunc readFunc,handleFunc writeFunc,void* arg);
+struct Channel* channelInit(int fd,int events,handleFunc readFunc,handleFunc writeFunc,void* arg);
 //允许写事件
-void writeEventEnable(Channel* channle, bool flag);
+void writeEventEnable(struct  Channel* channle, bool flag);
 //获取写事件是否被激活
-bool isWriteEventEnable(Channel * channle);
+bool isWriteEventEnable(struct Channel * channle);

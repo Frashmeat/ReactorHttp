@@ -27,8 +27,6 @@ struct ChannelElement
 	ChannelElement* next;
 
 };
-
-
 struct EventLoop
 {
 	//是否开启
@@ -60,9 +58,9 @@ struct EventLoop* eventLoopInit();
 struct EventLoop* eventLoopInitEx(const char* threadName);
 
 //eventLoop 运行函数
-int eventLoopRun(EventLoop* evLoop);
+int eventLoopRun(struct EventLoop* evLoop);
 // 调用 fd 对应channel的回调函数
-int eventActivate(EventLoop* evLoop, int fd, int event);
+int eventActivate(struct EventLoop* evLoop, int fd, int event);
 //添加任务到任务队列
 int eventLoopAddTask(struct EventLoop* evLoop, struct Channel* channel, int type);
 //处理任务列表的任务

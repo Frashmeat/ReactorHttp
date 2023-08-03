@@ -36,7 +36,7 @@ Dispatcher PollDispatcher = {
 
 void* pollInit()
 {
-	PollData* data = new PollData;
+	struct PollData* data = (struct PollData*)malloc(sizeof(struct PollData));
 	data->maxfd = 0;
 	for (int i = 0; i < Max; i++)
 	{

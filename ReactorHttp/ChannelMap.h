@@ -7,8 +7,8 @@ struct ChannelMap
 	Channel** list;
 };
 //初始化
-ChannelMap* ChannelMapInit(int size);
+struct ChannelMap* ChannelMapInit(int size);
 //清空容器
-void ChannelMapClear(ChannelMap* map);
+void ChannelMapClear(struct ChannelMap* map);
 //重新分配空间
-bool makeMapRoom(ChannelMap* map, int newSize, int unitSize);
+bool makeMapRoom(struct ChannelMap* map, int newSize, int unitSize);

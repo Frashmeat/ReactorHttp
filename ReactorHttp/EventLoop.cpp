@@ -91,7 +91,8 @@ int eventLoopAddTask(struct EventLoop* evLoop, struct Channel* channel, int type
 	//加锁
 	pthread_mutex_lock(&evLoop->mutex);
 	//创建新节点
-	ChannelElement* newNode = new ChannelElement;
+	//ChannelElement* newNode = new ChannelElement;
+	struct ChannelElement* newNode = (struct ChannelElement*)malloc(sizeof(struct ChannelElement));
 	newNode->channel = channel;
 	newNode->type = type;
 	newNode->next = NULL;
