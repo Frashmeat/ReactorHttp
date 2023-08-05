@@ -39,6 +39,12 @@
     <ClCompile Include="Buffer.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="TcpServer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="TcpConnection.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Channel.h">
@@ -60,6 +66,12 @@
       <Filter>Head</Filter>
     </ClInclude>
     <ClInclude Include="Buffer.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="TcpServer.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="TcpConnection.h">
       <Filter>Head</Filter>
     </ClInclude>
   </ItemGroup>

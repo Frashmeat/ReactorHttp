@@ -20,8 +20,10 @@ void bufferExtendRoom(struct Buffer* buffer, int size);
 int bufferWriteableSize(struct Buffer* buffer);
 //获取可读的内存容量
 int bufferReadableSize(struct Buffer* buffer);
-//写内存 1.直接写入 2.接收套接字的数据
+//写数据内存 1.直接写入 2.接收套接字的数据
 int bufferAppendData(struct Buffer* buffer, const char* data, int size);
+//写字符串到内存
 int bufferAppendString(struct Buffer* buffer, const char* data);
+//通过socket接收数据
 int bufferSocketRead(struct Buffer* buffer, int fd);
 
