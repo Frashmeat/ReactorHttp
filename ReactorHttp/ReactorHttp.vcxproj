@@ -80,6 +80,7 @@
     <ClInclude Include="ChannelMap.h" />
     <ClInclude Include="Dispatcher.h" />
     <ClInclude Include="EventLoop.h" />
+    <ClInclude Include="HttpRequest.h" />
     <ClInclude Include="TcpConnection.h" />
     <ClInclude Include="TcpServer.h" />
     <ClInclude Include="ThreadPool.h" />
@@ -91,6 +92,7 @@
     <ClCompile Include="ChannelMap.cpp" />
     <ClCompile Include="EpollDispatcher.cpp" />
     <ClCompile Include="EventLoop.cpp" />
+    <ClCompile Include="HttpRequest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PollDispatcher.cpp" />
     <ClCompile Include="SelectDispatcher.cpp" />

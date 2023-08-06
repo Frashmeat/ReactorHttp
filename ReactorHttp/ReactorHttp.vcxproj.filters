@@ -45,6 +45,9 @@
     <ClCompile Include="TcpConnection.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="HttpRequest.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Channel.h">
@@ -72,6 +75,9 @@
       <Filter>Head</Filter>
     </ClInclude>
     <ClInclude Include="TcpConnection.h">
+      <Filter>Head</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpRequest.h">
       <Filter>Head</Filter>
     </ClInclude>
   </ItemGroup>
