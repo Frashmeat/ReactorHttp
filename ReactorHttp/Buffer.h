@@ -26,4 +26,5 @@ int bufferAppendData(struct Buffer* buffer, const char* data, int size);
 int bufferAppendString(struct Buffer* buffer, const char* data);
 //通过socket接收数据
 int bufferSocketRead(struct Buffer* buffer, int fd);
-
+//基于\r\n 读出一行
+char* bufferFindCRLF(struct Buffer* buffer);
