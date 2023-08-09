@@ -45,3 +45,6 @@ void httpRequestAddHeader(struct HttpRequest* request, char* key, char* value);
 char* httpRequestGetHeader(struct HttpRequest* request, char* key);
 //解析请求行
 bool parseHttpRequestLine(struct HttpRequest* request, struct Buffer* readBuf);
+bool parseHttpRequestHeader(struct HttpRequest* request, struct Buffer* readBuf);
+//处理http请求
+bool parseHttpRequest(struct HttpRequest* request, struct Buffer* readBuf);

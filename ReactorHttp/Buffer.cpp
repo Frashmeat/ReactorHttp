@@ -111,7 +111,7 @@ int bufferSocketRead(struct Buffer* buffer, int fd)
 
 char* bufferFindCRLF(struct Buffer* buffer)
 {
-    memmem(buffer->data + buffer->readPos, bufferReadableSize(buffer), 
+    char* ptr = (char*)memmem(buffer->data + buffer->readPos, bufferReadableSize(buffer), 
         "\r\n", 2);
-    return nullptr;
+    return ptr;
 }
